@@ -1,14 +1,3 @@
-/*
-*  autor: Benjamin Valdes Aguirre
-*  fecha: Diciembre 2020
-*  programa: act 3.3 Implementacion Splay
-*  desc: estos programas son solciones parciales a algunos de
-*  las actividades planteadas en el curso TC1031
-*
-*		Nota: Esta imlpementación es bottom up, no divide al árbol para la operacións
-*		de barrado
-*/
-
 #ifndef SplayTree_H_
 #define SplayTree_H_
 
@@ -59,17 +48,18 @@ Node<T>* Node<T>::add(T val) {
 			return left;
 		}
 		else{
-			left->add(val);
+			return left->add(val);
 		}
 	}
 	else {
 		if (right == 0){
 			right = new Node(val);
             right->parent = this;
+			cout << "right value: " << right->value;
 			return right;
 		}
 		else{
-			right->add(val);
+			return right->add(val);
 		}
 	}
 	return 0;
@@ -327,9 +317,6 @@ void SplayTree<T>::remove(T val) {
         }
     }
 }
-
-
-
 
 template <class T>
 void SplayTree<T>::removeAll() {
