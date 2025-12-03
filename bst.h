@@ -60,23 +60,23 @@ bool QueueVector<T>::full() const {
 
 template <class T>
 void QueueVector<T>::enqueue(T val)  {
-    /* if(full()){
-       throw Overflow();
-    } */
+    if(full()){
+       throw overflow_error("Overflow");
+    }
     data.push_back(val);
 }
 
 template <class T>
 T QueueVector<T>::front() const  {
-	/* if(empty()){throw NoSuchElement();} */
+	if(empty()){ throw out_of_range("NoSuchElement"); }
     return data.front();
 }
 
 template <class T>
 void QueueVector<T>::dequeue()  {
-    /* if(empty()){
-        throw NoSuchElement();
-    } */
+    if(empty()){
+        throw out_of_range("NoSuchElement");
+    }
     data.erase(data.begin()); 
 }
 
@@ -290,6 +290,7 @@ template <class T>
 BST<T>::BST(){
     root = NULL;
 }
+
 template <class T>
 bool BST<T>::empty() const{
     if (root == 0){
@@ -301,9 +302,9 @@ bool BST<T>::empty() const{
 template<class T>
 void BST<T>::add(T val){
     TreeNode<T>* p = new TreeNode<T>(val);
-    /* if (p == 0){
-        throw OutOfMemory();
-    } */
+    if (p == 0){
+        throw bad_alloc();
+    }
     if (this->empty() != true){
         root->add(val);
     }
